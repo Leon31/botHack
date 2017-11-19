@@ -580,13 +580,6 @@ function quest(recipientId, id = 0) {
     message: {
       text: arrOfQuest[id].quest,
       quick_replies: [
-        for (let i = 0; i < arrOfQuest[id].length; i++) {
-          quick_replies.push({
-            "content_type":"text",
-            "title":arrOfQuest[id].title[i],
-            "payload": arrOfQuest[id].payload[i]
-          });
-        }
         // {
         //   "content_type":"text",
         //   "title":arrOfQuest[id].title[0],
@@ -604,6 +597,13 @@ function quest(recipientId, id = 0) {
         // }
       ]
     }
+    for (let i = 0; i < arrOfQuest[id].length; i++) {
+      messageData.message.quick_replies.push({
+        "content_type":"text",
+        "title":arrOfQuest[id].title[i],
+        "payload": arrOfQuest[id].payload[i]
+      })
+    };
   };
 callSendAPI(messageData);
 }
