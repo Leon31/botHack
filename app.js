@@ -141,6 +141,14 @@ function receivedAuthentication(event) {
   sendTextMessage(senderID, "Authentication successful");
 }
 
+
+curl -X POST -H "Content-Type: application/json" -d {
+  "setting_type":"greeting",
+  "greeting":{
+    "text":"Hello {{user_first_name}}, I'm the Yuranotbot. Lets learn to code together ;)"
+  }
+} "https://graph.facebook.com/v2.6/me/thread_settings?access_token=PAGE_ACCESS_TOKEN"
+
 function receivedMessage(event) {
   var senderID = event.sender.id;
   var recipientID = event.recipient.id;
