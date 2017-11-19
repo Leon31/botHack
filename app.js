@@ -180,8 +180,6 @@ function receivedMessage(event) {
 
         case 'python quiz':
               idQuest = 0;
-              // fetch(sendTextMessage(senderID, "To be honest, I only know Javascript 😅 , so let's train that!"))
-              //   .then(quest(senderID, idQuest));
               sendTextMessage(senderID, "To be honest, I only know Javascript 😅, so let's train that!")
               quest(senderID, idQuest);
               break;
@@ -189,8 +187,6 @@ function receivedMessage(event) {
         case 'true':
               if (idQuest < arrOfQuest.length) {
                 idQuest++;
-                // fetch(sendTextMessage(senderID, 'Good job! 💪  Next question!'))
-                //   .then(quest(senderID, idQuest));
                 sendTextMessage(senderID, 'Good job! 💪  Next question!');
                 quest(senderID, idQuest);
               } else {
@@ -201,8 +197,6 @@ function receivedMessage(event) {
 
         case 'false':
               idQuest++;
-              // fetch(sendTextMessage(senderID, 'Wrong answer😱'))
-              //   .then(wrongQuest(senderID, idQuest));
               wrongQuest(senderID, topic);
               sendTextMessage(senderID, 'Wrong answer😱');
           break;
@@ -240,7 +234,9 @@ function receivedMessage(event) {
         break;
 
       case 'gif':
+        sendTypingOn(senderID);
         sendGifMessage(senderID);
+        sendTypingOff(senderID);
         break;
 
       case 'button':
@@ -375,10 +371,10 @@ function sendHelpMenu(recipientId) {
     message: {
       text: `
 I'm still very young, so I only understand these commands:
-test - I'll ask you questions about coding
+test  - I'll ask you questions about coding
 train - I'll select a CodeWars challenge for you
-exit - Drops you out of whatever you're doing
-gif - I'll send you a hilarous gif about programming
+exit  - Drops you out of whatever you're doing
+gif   - I'll send you a hilarous gif about programming
       `
     }
   }
@@ -473,11 +469,11 @@ function wrongQuest(recipientId, topic) {
           elements: [{
             title: topic.split('/').slice(-1)[0],
             subtitle: `Take a look at this topic, it's better to revise it`,
-            item_url: `https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/${topic}`,
+            item_url: `https://developer.mozilla.org/en-US/docs/Web/JavaScript/${topic}`,
             image_url: 'http://www.maboa.co/img/portfolio/mdn.png',
             buttons: [{
               type: "web_url",
-              url: `https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/${topic}`,
+              url: `https://developer.mozilla.org/en-US/docs/Web/JavaScript/${topic}`,
               title: "Open MDN"
             }, {
               type: "postback",
