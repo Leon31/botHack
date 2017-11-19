@@ -180,7 +180,7 @@ function receivedMessage(event) {
 
         case 'python quiz':
               idQuest = 0;
-              fetch(sendTextMessage(senderID, "To be honest, I only know Javascript 😅, so let's train that!"))
+              fetch(sendTextMessage(senderID, "To be honest, I only know Javascript 😅 , so let's train that!"))
                 .then(quest(senderID, idQuest));
               // sendTextMessage(senderID, "To be honest, I only know Javascript 😅, so let's train that!")
               // quest(senderID, idQuest);
@@ -271,7 +271,7 @@ function receivedMessage(event) {
         sendTextMessage(senderID, 'Ok, see you whenever you want to be tested again 👋 ');
         break;
 
-      case 'Which language do you speak?':
+      case 'which language do you speak?':
         sendTextMessage(senderID, 'For now I\'m speaking only JS, but I\'m studying other languages');
         break;
 
@@ -355,7 +355,9 @@ function sendHiMessage(recipientId) {
     message: {
       text: `
 Hi, I'm here to make you the best developer in the world.
+
 We can "train" toghether, I can "test" your knowledge or just send you a "gif".
+
 If you need any "help", just ask.
 Have fun! 🤙
       `
