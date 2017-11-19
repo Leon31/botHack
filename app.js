@@ -180,20 +180,25 @@ function receivedMessage(event) {
 
         case 'python quiz':
               idQuest = 0;
-              quest(senderID, idQuest);
               sendTextMessage(senderID, "To be honest, I only know Javascript 😅, so let's train that!")
+              quest(senderID, idQuest);
               break;
 
         case 'true':
-              idQuest++;
-              quest(senderID, idQuest);
-              sendTextMessage(senderID, 'Good job! 💪  Next question!');
+              if (idQuest < arrOfQuest.length) {
+                idQuest++;
+                sendTextMessage(senderID, 'Good job! 💪  Next question!');
+                quest(senderID, idQuest);
+              } else {
+                idQuest = 0;
+                sendTextMessage(senderID, 'Well done, you\'ve solved all our questions!');
+              }
           break;
 
         case 'false':
-              idQuest = 0;
+              idQuest++;
+              sendTextMessage(senderID, 'Wrong answer😱');
               wrongQuest(senderID, topic);
-              sendTextMessage(senderID, 'Oh Noo! 😱  This is not the right answare.\n Let\'s review toghether this topic');
           break;
 
         case 'javascript':
@@ -332,8 +337,8 @@ function sendHiMessage(recipientId) {
     message: {
       text: `
 Hi, I'm here to make you the best developer in the world.
-We can *train* toghether, I can *test* your knowledge or just send you a *gif*.
-If you need any *help*, just ask.
+We can "train" toghether, I can "test" your knowledge or just send you a "gif".
+If you need any "help", just ask.
 Have fun! 🤙
       `
     }
@@ -350,10 +355,10 @@ function sendHelpMenu(recipientId) {
     message: {
       text: `
 I'm still very young, so I only understand these commands:
-*test* - I'll ask you questions about coding
-*train* - I'll select a CodeWars challenge for you
-*exit* - Drops you out of whatever you're doing
-*gif* - I'll send you a hilarous gif about programming
+test - I'll ask you questions about coding
+train - I'll select a CodeWars challenge for you
+exit - Drops you out of whatever you're doing
+gif - I'll send you a hilarous gif about programming
       `
     }
   }
@@ -478,7 +483,7 @@ function sendChallangeLink(recipientId, linky) {
         type: "template",
         payload: {
           template_type: "generic",
-          elements: {
+          elements: [{
             title: 'Codewars challenge',
             subtitle: `Open the link I've just sent you, a new challenge is wating for you`,
             item_url: `${linky}`,
@@ -488,7 +493,7 @@ function sendChallangeLink(recipientId, linky) {
               url: `${linky}`,
               title: "Open Codewars"
             }],
-          }
+          }]
         }
       }
     }
@@ -575,38 +580,22 @@ function startTest(recipientId) {
 }
 
 function quest(recipientId, id = 0) {
-  console.log(id);
   var messageData = {
     recipient: {
       id: recipientId
     },
     message: {
       text: arrOfQuest[id].quest,
-      quick_replies: [
-        for (let i = 0; i < arrOfQuest[id].length; i++) {
-          quick_replies.push({
-            "content_type":"text",
-            "title":arrOfQuest[id].title[i],
-            "payload": arrOfQuest[id].payload[i]
-          });
-        }
-        // {
-        //   "content_type":"text",
-        //   "title":arrOfQuest[id].title[0],
-        //   "payload": arrOfQuest[id].payload[0]
-        // },
-        // {
-        //   "content_type":"text",
-        //   "title":arrOfQuest[id].title[1],
-        //   "payload": arrOfQuest[id].payload[1]
-        // },
-        // {
-        //   "content_type":"text",
-        //   "title":arrOfQuest[id].title[2],
-        //   "payload": arrOfQuest[id].payload[2]
-        // }
-      ]
+      quick_replies: []
     }
+  };
+  for (let i = 0; i < arrOfQuest[id].title.length; i++) {
+    let obj = {
+      "content_type":"text",
+      "title":arrOfQuest[id].title[i],
+      "payload": arrOfQuest[id].payload[i]
+    };
+    messageData.message.quick_replies.push(obj);
   };
 callSendAPI(messageData);
 }
