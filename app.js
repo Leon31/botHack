@@ -225,7 +225,7 @@ function receivedMessage(event) {
         break;
 
       case 'gif':
-        sendGifMessage(sendGifMessage, [senderID]);
+        sendGifMessage(senderID);
         break;
 
       case 'button':
@@ -349,7 +349,7 @@ function sendHelpMenu(recipientId) {
 I'm still very young, so I only understand these commands:
 *test* - I'll ask you questions about coding
 *train* - I'll select a CodeWars challenge for you
-*exit* - Drops you out of whatever you're doing 🔙
+*exit* - Drops you out of whatever you're doing
 *gif* - I'll send you a hilarous gif about programming
       `
     }
@@ -365,6 +365,7 @@ function sendGifMessage(recipientId) {
     .then(function(response) {
     response.text().then(function(text) {
         gifJSON = JSON.parse(text);
+        console.log(gifJSON, gifJSON.data.image_original_url);
         var messageData = {
           recipient: {
             id: recipientId
