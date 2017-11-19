@@ -180,19 +180,19 @@ function receivedMessage(event) {
 
         case 'python quiz':
               idQuest = 0;
-              fetch(sendTextMessage(senderID, "To be honest, I only know Javascript 😅 , so let's train that!"))
-                .then(quest(senderID, idQuest));
-              // sendTextMessage(senderID, "To be honest, I only know Javascript 😅, so let's train that!")
-              // quest(senderID, idQuest);
+              // fetch(sendTextMessage(senderID, "To be honest, I only know Javascript 😅 , so let's train that!"))
+              //   .then(quest(senderID, idQuest));
+              sendTextMessage(senderID, "To be honest, I only know Javascript 😅, so let's train that!")
+              quest(senderID, idQuest);
               break;
 
         case 'true':
               if (idQuest < arrOfQuest.length) {
                 idQuest++;
-                fetch(sendTextMessage(senderID, 'Good job! 💪  Next question!'))
-                  .then(quest(senderID, idQuest));
-                // sendTextMessage(senderID, 'Good job! 💪  Next question!');
-                // quest(senderID, idQuest);
+                // fetch(sendTextMessage(senderID, 'Good job! 💪  Next question!'))
+                //   .then(quest(senderID, idQuest));
+                sendTextMessage(senderID, 'Good job! 💪  Next question!');
+                quest(senderID, idQuest);
               } else {
                 idQuest = 0;
                 sendTextMessage(senderID, 'Well done, you\'ve solved all our questions!');
@@ -201,10 +201,10 @@ function receivedMessage(event) {
 
         case 'false':
               idQuest++;
-              fetch(sendTextMessage(senderID, 'Wrong answer😱'))
-                .then(wrongQuest(senderID, idQuest));
-              // sendTextMessage(senderID, 'Wrong answer😱');
-              // wrongQuest(senderID, topic);
+              // fetch(sendTextMessage(senderID, 'Wrong answer😱'))
+              //   .then(wrongQuest(senderID, idQuest));
+              wrongQuest(senderID, topic);
+              sendTextMessage(senderID, 'Wrong answer😱');
           break;
 
         case 'javascript':
