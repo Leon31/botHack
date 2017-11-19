@@ -191,7 +191,7 @@ function receivedMessage(event) {
                 quest(senderID, idQuest);
               } else {
                 idQuest = 0;
-                sendTextMessage(senderID, 'Well done, you\'ve solved all our questions!');
+                sendTextMessage(senderID, 'Well done, you\'ve solved all our excercises!');
               }
           break;
 
