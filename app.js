@@ -597,17 +597,14 @@ function quest(recipientId, id = 0) {
       ]
     }
   };
-  console.log('arrOfQuest[id].length',arrOfQuest[id].length);
-  for (let i = 0; i < arrOfQuest[id].length; i++) {
+  for (let i = 0; i < arrOfQuest[id].title.length; i++) {
     let obj = {
       "content_type":"text",
       "title":arrOfQuest[id].title[i],
       "payload": arrOfQuest[id].payload[i]
     };
     messageData.message.quick_replies.push(obj);
-    console.log(arrOfQuest[id], i, obj);
   };
-  console.log(messageData);
 callSendAPI(messageData);
 }
 
