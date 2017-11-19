@@ -431,38 +431,6 @@ function sendButtonMessage(recipientId) {
 }
 
 
-// function wrongQuest(recipientId, topic) {
-//   var messageData = {
-//     recipient: {
-//       id: recipientId
-//     },
-//     message: {
-//       attachment: {
-//         type: "template",
-//         payload: {
-//           template_type: "generic",
-//           elements: {
-//             title: topic.split('/').slice(-1)[0],
-//             subtitle: `Take a look at this topic, is better to revise`,
-//             item_url: `https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/${topic}`,
-//             image_url: "../image/mdn.png",
-//             buttons: [{
-//               type: "web_url",
-//               url: `https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/${topic}`,
-//               title: "Open MDN"
-//             }, {
-//               type: "postback",
-//               title: "Start again",
-//               text: "test"
-//             }],
-//           }
-//         }
-//       }
-//     }
-//   };
-//   callSendAPI(messageData);
-// }
-
 function wrongQuest(recipientId, topic) {
   var messageData = {
     recipient: {
@@ -472,19 +440,29 @@ function wrongQuest(recipientId, topic) {
       attachment: {
         type: "template",
         payload: {
-          template_type: "button",
-          text: `You can learn more about ${topic.split('/').slice(-1)[0]}`,
-          buttons:[{
-            type: "web_url",
-            url: `https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/${topic}`,
-            title: "Open MDN"
-          }]
+          template_type: "generic",
+          elements: {
+            title: topic.split('/').slice(-1)[0],
+            subtitle: `Take a look at this topic, is better to revise`,
+            item_url: `https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/${topic}`,
+            image_url: 'http://www.maboa.co/img/portfolio/mdn.png',
+            buttons: [{
+              type: "web_url",
+              url: `https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/${topic}`,
+              title: "Open MDN"
+            }, {
+              type: "postback",
+              title: "Start again",
+              text: "test"
+            }],
+          }
         }
       }
     }
   };
   callSendAPI(messageData);
 }
+
 
 function sendChallangeLink(recipientId, linky) {
   var messageData = {
@@ -495,13 +473,18 @@ function sendChallangeLink(recipientId, linky) {
       attachment: {
         type: "template",
         payload: {
-          template_type: "button",
-          text: `A new challenge is wating for you!`,
-          buttons:[{
-            type: "web_url",
-            url: `${linky}`,
-            title: "Open Codewars"
-          }]
+          template_type: "generic",
+          elements: {
+            title: 'Codewars challenge',
+            subtitle: `Open the link I've just sent you, a new challenge is wating for you`,
+            item_url: `${linky}`,
+            image_url:  'https://d2gn4xht817m0g.cloudfront.net/p/product_screenshots/images/preview505/000/155/390/155390-0e6082933ef0647e22246e2791de61a46afb1ec1.jpg?1364103310',
+            buttons: [{
+              type: "web_url",
+              url: `${linky}`,
+              title: "Open Codewars"
+            }],
+          }
         }
       }
     }
