@@ -454,7 +454,7 @@ function wrongQuest(recipientId, topic) {
             }, {
               type: "postback",
               title: "Start again",
-              text: "test"
+              payload: "test"
             }],
           }]
         }
