@@ -225,7 +225,7 @@ function receivedMessage(event) {
         break;
 
       case 'gif':
-        sendGifMessage(sendGifMessage, [senderID]);
+        sendGifMessage(senderID);
         break;
 
       case 'button':
