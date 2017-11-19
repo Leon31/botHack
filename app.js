@@ -511,7 +511,7 @@ function sendChallangeLink(recipientId, linky) {
             buttons: [{
               type: "web_url",
               url: `${linky}`,
-              title: "Open Codewars"
+              title: "Begin your Challange @Codewars"
             }],
           }]
         }
