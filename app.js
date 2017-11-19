@@ -572,6 +572,7 @@ function startTest(recipientId) {
 }
 
 function quest(recipientId, id = 0) {
+  console.log(id);
   var messageData = {
     recipient: {
       id: recipientId
@@ -579,21 +580,28 @@ function quest(recipientId, id = 0) {
     message: {
       text: arrOfQuest[id].quest,
       quick_replies: [
-        {
-          "content_type":"text",
-          "title":arrOfQuest[id].title[0],
-          "payload": arrOfQuest[id].payload[0]
-        },
-        {
-          "content_type":"text",
-          "title":arrOfQuest[id].title[1],
-          "payload": arrOfQuest[id].payload[1]
-        },
-        {
-          "content_type":"text",
-          "title":arrOfQuest[id].title[2],
-          "payload": arrOfQuest[id].payload[2]
+        for (let i = 0; i < arrOfQuest[id].length; i++) {
+          quick_replies.push({
+            "content_type":"text",
+            "title":arrOfQuest[id].title[i],
+            "payload": arrOfQuest[id].payload[i]
+          });
         }
+        // {
+        //   "content_type":"text",
+        //   "title":arrOfQuest[id].title[0],
+        //   "payload": arrOfQuest[id].payload[0]
+        // },
+        // {
+        //   "content_type":"text",
+        //   "title":arrOfQuest[id].title[1],
+        //   "payload": arrOfQuest[id].payload[1]
+        // },
+        // {
+        //   "content_type":"text",
+        //   "title":arrOfQuest[id].title[2],
+        //   "payload": arrOfQuest[id].payload[2]
+        // }
       ]
     }
   };
