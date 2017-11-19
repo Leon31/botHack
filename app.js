@@ -605,6 +605,7 @@ function quest(recipientId, id = 0) {
       "payload": arrOfQuest[id].payload[i]
     })
   };
+  console.log(messageData);
 callSendAPI(messageData);
 }
 
