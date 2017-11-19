@@ -50,7 +50,7 @@ if (!(APP_SECRET && VALIDATION_TOKEN && PAGE_ACCESS_TOKEN && SERVER_URL)) {
 
 app.get('/privacy_policy.html',function(req,res){
 
-     res.sendFile('privacy_policy.html');
+     res.sendFile(__dirname + '/privacy_policy.html');
 });
 
 app.get('/webhook', function(req, res) {
