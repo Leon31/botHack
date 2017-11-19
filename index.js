@@ -21,6 +21,9 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
 
+const NODE_ENV = (process.env.NODE_ENV) ?
+  process.env.NODE_ENV :
+  config.get('nodeEnv');
 
 const APP_SECRET = (process.env.MESSENGER_APP_SECRET) ?
   process.env.MESSENGER_APP_SECRET :
