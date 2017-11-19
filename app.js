@@ -169,8 +169,6 @@ function receivedMessage(event) {
   } else if (quickReply) {
     var quickReplyPayload = quickReply.payload;
       if (quickReplyPayload.match(/false/)) {
-        console.log(quickReplyPayload, quickReplyPayload.match(/false/));
-        console.log(quickReplyPayload, '<-------------- if false faccio cose');
         var topic = quickReplyPayload.split(' ').slice(1).join(' ');
         quickReplyPayload = quickReplyPayload.split(' ')[0]
       }
@@ -189,12 +187,13 @@ function receivedMessage(event) {
         case 'true':
               idQuest++;
               quest(senderID, idQuest);
+              sendTextMessage(senderID, 'Good job! 💪  Next question!');
           break;
 
         case 'false':
               idQuest = 0;
-              // sendTextMessage(senderID, 'Oh Noo! 😱  This is not the right answare.\n Let\'s review toghether this topic');
               wrongQuest(senderID, topic);
+              sendTextMessage(senderID, 'Oh Noo! 😱  This is not the right answare.\n Let\'s review toghether this topic');
           break;
 
         case 'javascript':
