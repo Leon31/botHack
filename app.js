@@ -365,7 +365,6 @@ function sendGifMessage(recipientId) {
     .then(function(response) {
     response.text().then(function(text) {
         gifJSON = JSON.parse(text);
-        console.log(gifJSON, gifJSON.data.image_original_url);
         var messageData = {
           recipient: {
             id: recipientId
@@ -432,6 +431,7 @@ function sendButtonMessage(recipientId) {
 }
 
 
+
 function wrongQuest(recipientId, topic) {
   var messageData = {
     recipient: {
@@ -442,9 +442,9 @@ function wrongQuest(recipientId, topic) {
         type: "template",
         payload: {
           template_type: "generic",
-          elements: {
+          elements: [{
             title: topic.split('/').slice(-1)[0],
-            subtitle: `Take a look at this topic, is better to revise`,
+            subtitle: `Take a look at this topic, it's better to revise it`,
             item_url: `https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/${topic}`,
             image_url: 'http://www.maboa.co/img/portfolio/mdn.png',
             buttons: [{
@@ -456,7 +456,7 @@ function wrongQuest(recipientId, topic) {
               title: "Start again",
               text: "test"
             }],
-          }
+          }]
         }
       }
     }
