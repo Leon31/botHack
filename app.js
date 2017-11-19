@@ -46,8 +46,6 @@ if (!(APP_SECRET && VALIDATION_TOKEN && PAGE_ACCESS_TOKEN && SERVER_URL)) {
   process.exit(1);
 }
 
-//https://yuranotbot-hackathon.herokuapp.com/privacy_policy.html
-
 app.get('/privacy_policy.html',function(req,res){
 
      res.sendFile(__dirname + '/privacy_policy.html');
