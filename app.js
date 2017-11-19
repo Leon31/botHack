@@ -597,6 +597,7 @@ function quest(recipientId, id = 0) {
       ]
     }
   };
+  console.log('arrOfQuest[id].length',arrOfQuest[id].length);
   for (let i = 0; i < arrOfQuest[id].length; i++) {
     let obj = {
       "content_type":"text",
