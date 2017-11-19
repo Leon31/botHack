@@ -2,5 +2,5 @@
     "appSecret": "d78ff066f3bf83e6b680cf708d6a994e",
     "pageAccessToken": "EAACmHUn9r7sBAIT0nNkTWmZAwuJZCZATUTcznZA235WPOH8ZBTZA7cBeUpps6vQcX4D4RhMguByuTv0A48StZBWoyuW9YgTOJa2bklIhTKWQeIpVmc5ri2QmmBfF8KeuqKXO3kc5xxW1m4HMSBxAXYe4UfZA7Uyoj8LlNgJQVoHlyza08cPJFio4",
     "validationToken": "HDS9eKteuMBTnrQFtRpdPvNpgHuA30eLcDcFi2mdCZqP5I8cXjdWmAKIgtK4u2RMJspCGqRtt68GdefpFPeachHezvleqv3gm87e0UVQPz1vmNm7xsEsdiFklQx9gWz7",
-    "serverURL": "https://messenger-webhook-cw-hackathon.herokuapp.com/webhook"
+    "serverURL": "https://yuranotbot-hackathon.herokuapp.com/webhook"
 }
