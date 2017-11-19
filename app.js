@@ -14,7 +14,7 @@ const
   arrOfQuest = require('./questObj.js');
 
 var idQuest = 0;
-
+var lang;
 var app = express();
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');
@@ -208,6 +208,11 @@ function receivedMessage(event) {
           break;
 
         case 'javascript':
+        case 'javascript':
+        case 'python':
+        case 'go':
+        case 'csharp':
+          lang = quickReplyPayload;
           sendDifficulty(senderID);
           break;
 
@@ -215,7 +220,7 @@ function receivedMessage(event) {
         case 'mid':
         case 'hard':
           var diff = quickReplyPayload;
-          var linky = generateLink(diff);
+          var linky = generateLink(diff, lang);
           sendChallangeLink(senderID, linky);
           break;
 
@@ -557,6 +562,24 @@ function sendLanguage(recipientId) {
           "title":"Javascript",
           "payload":"Javascript",
           "image_url":"http://ecodile.com/wp-content/uploads/2015/10/node_icon2.png"
+        },
+        {
+          "content_type":"text",
+          "title":"Python",
+          "payload":"python",
+          "image_url":"https://insidehpc.com/wp-content/uploads/2016/01/Python-logo-notext.svg_.png"
+        },
+        {
+          "content_type":"text",
+          "title":"Go",
+          "payload":"go",
+          "image_url":"http://www.fileedge.com/wp-content/uploads/2017/06/go.png"
+        },
+        {
+          "content_type":"text",
+          "title":"C#",
+          "payload":"csharp",
+          "image_url":"https://raw.githubusercontent.com/isocpp/logos/master/cpp_logo.png"
         }
       ]
     }

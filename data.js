@@ -7,7 +7,7 @@ const randomizer = function (array) {
   return array[index];
 };
 
-var generateLink = function (diff) {
+var generateLink = function (diff, lang) {
   if (diff === 'easy') {
     var res = randomizer(challangesEasy);
   } else if (diff === 'mid') {
@@ -16,7 +16,7 @@ var generateLink = function (diff) {
   else {
     res = randomizer(challangesHard);
   }
-  return `https://www.codewars.com/kata/${res}/train/javascript`;
+  return `https://www.codewars.com/kata/${res}/train/${lang}`;
 };
 
 
