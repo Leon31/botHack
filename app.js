@@ -255,6 +255,10 @@ function receivedMessage(event) {
         sendTextMessage(senderID, 'Ok, see you whenever you want to be tested again 👋 ');
         break;
 
+      case 'Which language do you speak?':
+        sendTextMessage(senderID, 'For now I\'m speaking only JS, but I\'m studying other languages');
+        break;
+
       default:
         var rdmResp = ['Sorry, I didn\'t get that', 'I\'m not quite sure what you mean', 'Sorry?', 'Yeah I almost totally agree with you', 'I can\'t answer that, but I\'ll be your friend friend!'];
         messageText = rdmResp[Math.floor(Math.random() * rdmResp.length)];
