@@ -7,11 +7,6 @@ var arrOfQuest = [
        'var myArray = {};',
        'var myArray = array();' ],
     payload: [ "false Operators/this", "true", "false Operators/this", "false Operators/this", "false Operators/this" ] },
-  {
-    quest:"Which is the right way to initialise an Array?\n",
-    title:["var arr = [1,2,3]", "arr[1][2][3]", "var arr = {1,2,3}"],
-    payload: ["true ", "false Global_Objects/Array", "false Global_Objects/Array"]
-  },
   { quest: "var obj1 = {}; var obj2 = {}; What is the value of (obj1 === obj2)?",
     title: [ 'true', 'false' ],
     payload: [ "false Operators/Comparison_Operators#Identity", "true" ]
