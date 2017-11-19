@@ -1,7 +1,7 @@
 var arrOfQuest = [
   {
      quest:"Can you compelte the sentence?\n Context is the thing to the left of the dot...",
-     title:[".com", "don\'t know", "at call site"]
+     title:[".com", "don\'t know", "at call site"],
      payload: ["false Reference/Operators/this", "false Reference/Operators/this", "true"]
    },
   { quest: 'Which of these is a correct method to create a new array?',
