@@ -630,6 +630,7 @@ function quest(recipientId, id = 0) {
     };
     messageData.message.quick_replies.push(obj);
   };
+app.use(delay(250));
 callSendAPI(messageData);
 }
 
