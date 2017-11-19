@@ -16,6 +16,7 @@ const
 var idQuest = 0;
 var lang;
 var app = express();
+var delay = require('express-delay');
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');
 app.use(bodyParser.json({ verify: verifyRequestSignature }));
