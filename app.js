@@ -231,6 +231,7 @@ function receivedMessage(event) {
     switch (messageText.replace(/[^\w\s]/gi, '').trim().toLowerCase()) {
       case 'hello':
       case 'hi':
+      case 'get started':
         sendHiMessage(senderID);
         break;
 
