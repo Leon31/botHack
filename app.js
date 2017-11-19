@@ -180,15 +180,19 @@ function receivedMessage(event) {
 
         case 'python quiz':
               idQuest = 0;
-              sendTextMessage(senderID, "To be honest, I only know Javascript 😅, so let's train that!")
-              quest(senderID, idQuest);
+              fetch(sendTextMessage(senderID, "To be honest, I only know Javascript 😅, so let's train that!"))
+                .then(quest(senderID, idQuest));
+              // sendTextMessage(senderID, "To be honest, I only know Javascript 😅, so let's train that!")
+              // quest(senderID, idQuest);
               break;
 
         case 'true':
               if (idQuest < arrOfQuest.length) {
                 idQuest++;
-                sendTextMessage(senderID, 'Good job! 💪  Next question!');
-                quest(senderID, idQuest);
+                fetch(sendTextMessage(senderID, 'Good job! 💪  Next question!'))
+                  .then(quest(senderID, idQuest));
+                // sendTextMessage(senderID, 'Good job! 💪  Next question!');
+                // quest(senderID, idQuest);
               } else {
                 idQuest = 0;
                 sendTextMessage(senderID, 'Well done, you\'ve solved all our questions!');
@@ -197,8 +201,10 @@ function receivedMessage(event) {
 
         case 'false':
               idQuest++;
-              sendTextMessage(senderID, 'Wrong answer😱');
-              wrongQuest(senderID, topic);
+              fetch(sendTextMessage(senderID, 'Wrong answer😱'))
+                .then(wrongQuest(senderID, idQuest));
+              // sendTextMessage(senderID, 'Wrong answer😱');
+              // wrongQuest(senderID, topic);
           break;
 
         case 'javascript':
@@ -303,7 +309,14 @@ function receivedPostback(event) {
   console.log("Received postback for user %d and page %d with payload '%s' " +
     "at %d", senderID, recipientID, payload, timeOfPostback);
 
-  sendTextMessage(senderID, "Postback called");
+    switch (payload.replace(/[^\w\s]/gi, '').trim().toLowerCase()) {
+      case 'continue':
+            quest(senderID, idQuest);
+        break;
+
+    }
+
+  // sendTextMessage(senderID, "Postback called");
 }
 
 function receivedMessageRead(event) {
@@ -461,8 +474,8 @@ function wrongQuest(recipientId, topic) {
               title: "Open MDN"
             }, {
               type: "postback",
-              title: "Start again",
-              payload: "test"
+              title: "Continue",
+              payload: "continue"
             }],
           }]
         }
