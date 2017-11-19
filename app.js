@@ -179,6 +179,12 @@ function receivedMessage(event) {
         quickReplyPayload = quickReplyPayload.split(' ')[0]
       }
       switch (quickReplyPayload.replace(/[^\w\s]/gi, '').trim().toLowerCase()) {
+        case 'hello':
+        case 'hi':
+        case 'get started':
+          sendHiMessage(senderID);
+          break;
+
         case 'javascript quiz':
               idQuest = 0;
               quest(senderID, idQuest);
@@ -317,6 +323,12 @@ function receivedPostback(event) {
     "at %d", senderID, recipientID, payload, timeOfPostback);
 
     switch (payload.replace(/[^\w\s]/gi, '').trim().toLowerCase()) {
+      case 'hello':
+      case 'hi':
+      case 'get started':
+        sendHiMessage(senderID);
+        break;
+
       case 'continue':
             quest(senderID, idQuest);
         break;
