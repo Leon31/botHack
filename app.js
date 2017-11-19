@@ -16,7 +16,7 @@ const
 var idQuest = 0;
 
 var app = express();
-app.set('port', process.env.PORT || 5000);
+app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');
 app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
@@ -169,19 +169,24 @@ function receivedMessage(event) {
   } else if (quickReply) {
     var quickReplyPayload = quickReply.payload;
       if (quickReplyPayload.match(/false/)) {
+        console.log(quickReplyPayload, quickReplyPayload.match(/false/));
         console.log(quickReplyPayload, '<-------------- if false faccio cose');
         var topic = quickReplyPayload.split(' ').slice(1).join(' ');
         quickReplyPayload = quickReplyPayload.split(' ')[0]
       }
       switch (quickReplyPayload.replace(/[^\w\s]/gi, '').trim().toLowerCase()) {
         case 'javascript quiz':
-              // sendTextMessage(senderID, 'Grate! let\'s start!');
               idQuest = 0;
               quest(senderID, idQuest);
           break;
 
+        case 'python quiz':
+              idQuest = 0;
+              quest(senderID, idQuest);
+              sendTextMessage(senderID, "To be honest, I only know Javascript 😅, so let's train that!")
+              break;
+
         case 'true':
-              // sendTextMessage(senderID, 'Grate! next question!');
               idQuest++;
               quest(senderID, idQuest);
           break;
@@ -251,13 +256,9 @@ function receivedMessage(event) {
         sendTextMessage(senderID, 'Ok, see you whenever you want to be tested again 👋 ');
         break;
 
-      case 'thanks':
-        sendTextMessage(senderID, 'My palsure to help you');
-        break;
-
       default:
-        var rdmResp = ['I didn\'t get you', 'I\'m not sure but.. i have no idea', 'What sorry?', 'Yeah I totaly agree with you halfway', 'I\'m bilding a card castle, don\'t bother me', 'You can tell taht, but I can.. as I can just type', 'I can\'t answare to you but can we still be friend :D'];
-        messageText = rdmResp[Math.floor(Math.random()*rdmResp.length)];
+        var rdmResp = ['Sorry, I didn\'t get that', 'I\'m not quite sure what you mean', 'Sorry?', 'Yeah I almost totally agree with you', 'I can\'t answer that, but I\'ll be your friend friend!'];
+        messageText = rdmResp[Math.floor(Math.random() * rdmResp.length)];
         sendTextMessage(senderID, messageText);
     }
   } else if (messageAttachments) {
@@ -327,12 +328,9 @@ function sendHiMessage(recipientId) {
     },
     message: {
       text: `
-Hi! i'm here to make you the best developer of the world.
-
-We can "train" toghether or I can "test" your knowledge, or just send funny "gif".
-
-Btw, if you need any "help" just ask.
-
+Hi, I'm here to make you the best developer in the world.
+We can *train* toghether, I can *test* your knowledge or just send you a *gif*.
+If you need any *help*, just ask.
 Have fun! 🤙
       `
     }
@@ -348,15 +346,11 @@ function sendHelpMenu(recipientId) {
     },
     message: {
       text: `
-I'm in a developing stage! Lets learn together! Commands I already understand:
-
-test - I'm gonna test your knowledge about coding 🤓
-
-train - Generates random code challange 💪
-
-exit - If you want to drop the running activity 🔙
-
-gif - I'll send you a random gif about programming 😂
+I'm still very young, so I only understand these commands:
+*test* - I'll ask you questions about coding
+*train* - I'll select a CodeWars challenge for you
+*exit* - Drops you out of whatever you're doing 🔙
+*gif* - I'll send you a hilarous gif about programming
       `
     }
   }
@@ -479,7 +473,7 @@ function wrongQuest(recipientId, topic) {
         type: "template",
         payload: {
           template_type: "button",
-          text: `Take a look at ${topic.split('/').slice(-1)[0]}, is better to revise`,
+          text: `You can learn more about ${topic.split('/').slice(-1)[0]}`,
           buttons:[{
             type: "web_url",
             url: `https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/${topic}`,
@@ -502,7 +496,7 @@ function sendChallangeLink(recipientId, linky) {
         type: "template",
         payload: {
           template_type: "button",
-          text: `Open the link I've just sent you, a new challenge is wating for you`,
+          text: `A new challenge is wating for you!`,
           buttons:[{
             type: "web_url",
             url: `${linky}`,
@@ -521,7 +515,7 @@ function sendDifficulty(recipientId) {
       id: recipientId
     },
     message: {
-      text: "Feeling lucky today? Select your level",
+      text: "Choose the difficulty",
       quick_replies: [
         {
           "content_type":"text",
@@ -573,14 +567,19 @@ function startTest(recipientId) {
       id: recipientId
     },
     message: {
-      text: `
-Amazing I'm gonna challenge your knowledge!
-Choose the languange`,
+      text: `Choose the languange`,
       quick_replies: [
         {
           "content_type":"text",
           "title":"Javascript",
-          "payload": "javascript quiz"
+          "payload": "javascript quiz",
+          "image_url": "http://ecodile.com/wp-content/uploads/2015/10/node_icon2.png"
+        },
+        {
+          "content_type":"text",
+          "title":"Python",
+          "payload": "python quiz",
+          "image_url": "https://www.python.org/static/opengraph-icon-200x200.png"
         }
       ]
     }
