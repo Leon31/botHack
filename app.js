@@ -488,7 +488,6 @@ function wrongQuest(recipientId, topic) {
   callSendAPI(messageData);
 }
 
-
 function sendChallangeLink(recipientId, linky) {
   var messageData = {
     recipient: {
