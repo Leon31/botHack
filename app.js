@@ -364,7 +364,6 @@ function sendGifMessage(recipientId) {
     .then(function(response) {
     response.text().then(function(text) {
         gifJSON = JSON.parse(text);
-        console.log(gifJSON, gifJSON.data.image_original_url);
         var messageData = {
           recipient: {
             id: recipientId
@@ -431,6 +430,7 @@ function sendButtonMessage(recipientId) {
 }
 
 
+
 function wrongQuest(recipientId, topic) {
   var messageData = {
     recipient: {
@@ -441,9 +441,9 @@ function wrongQuest(recipientId, topic) {
         type: "template",
         payload: {
           template_type: "generic",
-          elements: {
+          elements: [{
             title: topic.split('/').slice(-1)[0],
-            subtitle: `Take a look at this topic, is better to revise`,
+            subtitle: `Take a look at this topic, it's better to revise it`,
             item_url: `https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/${topic}`,
             image_url: 'http://www.maboa.co/img/portfolio/mdn.png',
             buttons: [{
@@ -453,9 +453,9 @@ function wrongQuest(recipientId, topic) {
             }, {
               type: "postback",
               title: "Start again",
-              text: "test"
+              payload: "test"
             }],
-          }
+          }]
         }
       }
     }
@@ -571,6 +571,7 @@ function startTest(recipientId) {
 }
 
 function quest(recipientId, id = 0) {
+  console.log(id);
   var messageData = {
     recipient: {
       id: recipientId
@@ -578,21 +579,28 @@ function quest(recipientId, id = 0) {
     message: {
       text: arrOfQuest[id].quest,
       quick_replies: [
-        {
-          "content_type":"text",
-          "title":arrOfQuest[id].title[0],
-          "payload": arrOfQuest[id].payload[0]
-        },
-        {
-          "content_type":"text",
-          "title":arrOfQuest[id].title[1],
-          "payload": arrOfQuest[id].payload[1]
-        },
-        {
-          "content_type":"text",
-          "title":arrOfQuest[id].title[2],
-          "payload": arrOfQuest[id].payload[2]
+        for (let i = 0; i < arrOfQuest[id].length; i++) {
+          quick_replies.push({
+            "content_type":"text",
+            "title":arrOfQuest[id].title[i],
+            "payload": arrOfQuest[id].payload[i]
+          });
         }
+        // {
+        //   "content_type":"text",
+        //   "title":arrOfQuest[id].title[0],
+        //   "payload": arrOfQuest[id].payload[0]
+        // },
+        // {
+        //   "content_type":"text",
+        //   "title":arrOfQuest[id].title[1],
+        //   "payload": arrOfQuest[id].payload[1]
+        // },
+        // {
+        //   "content_type":"text",
+        //   "title":arrOfQuest[id].title[2],
+        //   "payload": arrOfQuest[id].payload[2]
+        // }
       ]
     }
   };
