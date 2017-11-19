@@ -16,7 +16,6 @@ const
 var idQuest = 0;
 var lang;
 var app = express();
-var delay = require('express-delay');
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');
 app.use(bodyParser.json({ verify: verifyRequestSignature }));
@@ -631,10 +630,15 @@ function quest(recipientId, id = 0) {
     };
     messageData.message.quick_replies.push(obj);
   };
-app.use(delay(250));
-callSendAPI(messageData);
+ delay(callSendAPI(messageData), 200);
 }
 
+const delay = function (func, wait) {
+  var args = Array.prototype.slice.call(arguments, 2);
+  setTimeout(function(){
+    return func.apply(null, args);
+  }, wait);
+};
 /*
  * Send a read receipt to indicate the message has been read
  *
