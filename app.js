@@ -185,7 +185,7 @@ function receivedMessage(event) {
               break;
 
         case 'true':
-              if (idQuest < arrOfQuest.length) {
+              if (idQuest < arrOfQuest.length - 1) {
                 idQuest++;
                 sendTextMessage(senderID, 'Good job! 💪  Next question!');
                 quest(senderID, idQuest);
