@@ -598,11 +598,13 @@ function quest(recipientId, id = 0) {
     }
   };
   for (let i = 0; i < arrOfQuest[id].length; i++) {
-    messageData.message.quick_replies.push({
+    let obj = {
       "content_type":"text",
       "title":arrOfQuest[id].title[i],
       "payload": arrOfQuest[id].payload[i]
-    })
+    };
+    messageData.message.quick_replies.push(obj);
+    console.log(arrOfQuest[id], i, obj);
   };
   console.log(messageData);
 callSendAPI(messageData);
