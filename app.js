@@ -573,7 +573,7 @@ function sendLanguage(recipientId) {
         {
           "content_type":"text",
           "title":"Javascript",
-          "payload":"Javascript",
+          "payload":"javascript",
           "image_url":"http://ecodile.com/wp-content/uploads/2015/10/node_icon2.png"
         },
         {
