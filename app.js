@@ -630,11 +630,10 @@ function quest(recipientId, id = 0) {
     };
     messageData.message.quick_replies.push(obj);
   };
- delay(callSendAPI(messageData), 200);
+ delay(callSendAPI, 200, messageData);
 }
 
-const delay = function (func, wait) {
-  var args = Array.prototype.slice.call(arguments, 2);
+const delay = function (func, wait, ...args) {
   setTimeout(function(){
     return func.apply(null, args);
   }, wait);
