@@ -328,7 +328,12 @@ function receivedPostback(event) {
         break;
 
       case 'continue':
-            quest(senderID, idQuest);
+        if (idQuest < arrOfQuest.length - 1) {
+          quest(senderID, idQuest);
+        } else {
+          idQuest = 0;
+          sendTextMessage(senderID, 'Well done, you\'ve solved all our excercises!');
+        }
         break;
 
     }
