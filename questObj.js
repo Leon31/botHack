@@ -11,7 +11,7 @@ var arrOfQuest = [
        'var myArray = new Array[];',
        'var myArray = {};',
        'var myArray = array();' ],
-    payload: [ "false Reference/Operators/this", "true", "false Reference/Operators/this", "false Reference/Operators/this", "false Reference/Operators/this" ] },
+    payload: [ "false Reference/Global/Object/Array", "true", "false Reference/Global/Object/Array", "false Reference/Global/Object/Array", "false Reference/Global/Object/Array" ] },
   { quest: "var obj1 = {}; var obj2 = {}; What is the value of (obj1 === obj2)?",
     title: [ 'true', 'false' ],
     payload: [ "false Reference/Operators/Comparison_Operators#Identity", "true" ]

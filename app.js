@@ -282,7 +282,7 @@ function receivedMessage(event) {
         break;
 
       default:
-        var rdmResp = ['Sorry, I didn\'t get that', 'I\'m not quite sure what you mean', 'Sorry?', 'Yeah I almost totally agree with you', 'I can\'t answer that, but I\'ll be your friend friend!'];
+        var rdmResp = ['Sorry, I didn\'t get that', 'I\'m not quite sure what you mean', 'Sorry?', 'Yeah I almost totally agree with you', 'I can\'t answer that, but I\'ll be your friend!'];
         messageText = rdmResp[Math.floor(Math.random() * rdmResp.length)];
         sendTextMessage(senderID, messageText);
     }
